@@ -5,13 +5,14 @@
  *Program Description: An application that stores information about client requests
  */
 
+
 #include <iostream> //cin, cout
 #include <iomanip>  //fixed, setprecision()
 #include <sstream>  //string streams
 #include <cmath>    //sqrt()
 #include <limits>   //INT_MAX
 #include <stdexcept>//out_of_range
-
+#include "MyConsoleInput.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ public:
 	//get
 	void GetTicketNumber();
 	string GetID();
-	void GetDate();
+	int GetDate();
 	void GetDescription();
 
 	void ShowWorkTicket();
@@ -50,24 +51,74 @@ private:
 int main()
 {
 	//Declarations
+	int dayInput, monthInput, yearInput;
+	string descInput;
+	const int TICKET_QUANTITY = 2;
+	//WorkTicket
+	WorkTicket userTickets[TICKET_QUANTITY];
 
+	try
+	{
+
+
+		for (int count = 0; count < TICKET_QUANTITY; count++)
+		{
+			//Input
+		//Program asks for the current date
+			cout << "\nWhat date is it today?\n";
+			cout << "Day: ";
+			dayInput = ConsoleInput::ReadInteger(1, 31);
+
+			cout << endl << "Month: ";
+			monthInput = ConsoleInput::ReadInteger(1, 12);
+			cout << endl << "Year: ";
+			yearInput = ConsoleInput::ReadInteger(2000, 2099);
+			userTickets[count].SetDate(dayInput, monthInput, yearInput);
+
+		//Program asks for the ticket description
+
+
+			//Sets the user inputs to the appropriate ticket
+			userTickets[count].SetWorkTicket();
+		}
+		//Program asks for the WorkTicket Description
+		/*do
+		{
+			cout << "What is the reason for requesting a Work Ticket?";
+			cin >> descInput;
+		} while (descInput == "");*/
+
+
+
+	cout << dayInput << "/" << monthInput << "/" << yearInput << endl << descInput;
+
+	}
+	catch (invalid_argument &ex)
+	{
+		cerr << ex.what() << " Ending the program." << endl;
+	}
+
+	cout << endl << endl;
+	return 0;
 
 } //end of main
 
 //Class Definition
 //Getters
 
-void WorkTicket::GetDate()
+int WorkTicket::GetDate()
 {
-	
+	return myDay, myMonth, myYear;
 }
 
 
 void WorkTicket::SetWorkTicket()
 {
-	bool isValid = false;
 
-	return isValid;
+	{
+
+
+	}
 } //end of SetWorkTicket
 
 //Setters
