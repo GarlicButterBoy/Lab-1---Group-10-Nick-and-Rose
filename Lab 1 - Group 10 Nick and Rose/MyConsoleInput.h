@@ -1,3 +1,9 @@
+/*
+ *Name: Nick Sturch-Flint (100303769) & Rose Nguyen (100764192)
+ *Date: September 18, 2020
+ *Program Name: Review of Classes and Objects: Work Tickets
+ *Program Description: An application that stores information about client requests
+ */
 #pragma once
 
 #ifndef MY_CONSOLE_INPUT_H
