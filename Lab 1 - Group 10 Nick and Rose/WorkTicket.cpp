@@ -5,13 +5,13 @@
  *Program Description: An application that stores information about client requests
  */
 
-
 #include <iostream> //cin, cout
 #include <iomanip>  //fixed, setprecision()
 #include <sstream>  //string streams
 #include <cmath>    //sqrt()
 #include <limits>   //INT_MAX
 #include <stdexcept>//out_of_range
+#include <vector>
 #include "MyConsoleInput.h"
 
 using namespace std;
@@ -35,11 +35,13 @@ public:
 	//set
 	void SetTicketNumber(int ticketNumber);
 	string SetID(int clientID);
-	void SetDate(int day, int month, int year);
+	int SetDate(int day, int month, int year);
 	void SetDescription(string description);
 
 	string ToString() const;
 	void SetWorkTicket();
+
+
 private:
 	//private data members
 	int myDay; //
@@ -75,18 +77,18 @@ int main()
 			yearInput = ConsoleInput::ReadInteger(2000, 2099);
 			userTickets[count].SetDate(dayInput, monthInput, yearInput);
 
+			cout << userTickets[count].GetDate();
 		//Program asks for the ticket description
-
-
-			//Sets the user inputs to the appropriate ticket
-			userTickets[count].SetWorkTicket();
-		}
-		//Program asks for the WorkTicket Description
 		/*do
 		{
 			cout << "What is the reason for requesting a Work Ticket?";
-			cin >> descInput;
+			getline(cin, descInput);
 		} while (descInput == "");*/
+
+			//Sets the user inputs to the appropriate ticket
+		//	userTickets[count].SetWorkTicket();
+		}
+
 
 
 
@@ -143,5 +145,14 @@ void WorkTicket::ShowWorkTicket()
 
 } //end of ShowWorkTicket
 
+//string WorkTicket::ToString() const
+//{
+//	stringstream strOut;
+//
+//	strOut << "Ticket Number: " << ticketNumber;
+//
+//	//return the string
+//	return strOut.str();
+//}
 
 
