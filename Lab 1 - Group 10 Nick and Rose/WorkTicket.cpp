@@ -8,10 +8,9 @@
 #include <iostream> //cin, cout
 #include <iomanip>  //fixed, setprecision()
 #include <sstream>  //string streams
-#include <cmath>    //sqrt()
 #include <limits>   //INT_MAX
 #include <stdexcept>//out_of_range
-#include <vector>
+#include <string>
 #include "MyConsoleInput.h"
 
 using namespace std;
@@ -23,10 +22,13 @@ public:
 	WorkTicket(int ticketNumber = 0, int day = 1, int month = 1, int year = 2000, string clientID = "", string description = "");
 
 	//Accessors: Query the state of the object
-	//get
-	void GetTicketNumber();
+	//getters
+	int GetTicketNumber(int ticketNumber);
+
 	string GetID();
+
 	int GetDate();
+
 	void GetDescription();
 
 	void ShowWorkTicket();
@@ -35,15 +37,19 @@ public:
 	//set
 	void SetTicketNumber(int ticketNumber);
 	string SetID(int clientID);
-	int SetDate(int day, int month, int year);
+
+	void SetDate(int day, int month, int year);
+
 	void SetDescription(string description);
 
+	string DateString() const;
 	string ToString() const;
 	void SetWorkTicket();
 
 
 private:
 	//private data members
+	int myTicketNumber;
 	int myDay; //
 	int myMonth;
 	int myYear;
@@ -66,6 +72,8 @@ int main()
 		for (int count = 0; count < TICKET_QUANTITY; count++)
 		{
 			//Input
+		userTickets[count].SetTicketNumber(count + 1); //sets the ticket number to 1, 2 or 3; depending on the loop instance
+
 		//Program asks for the current date
 			cout << "\nWhat date is it today?\n";
 			cout << "Day: ";
@@ -106,7 +114,19 @@ int main()
 } //end of main
 
 //Class Definition
+//constructor for WorkTicket
+WorkTicket::WorkTicket(int ticketNumber, int day, int month, int year, string clientID, string description)
+{
+	//SetWorkTicket(ticketNumber, day, month, year, clientID, description);
+}
+
+
 //Getters
+int WorkTicket::GetTicketNumber(int ticketNumber)
+{
+	return ticketNumber;
+}
+
 
 int WorkTicket::GetDate()
 {
@@ -114,16 +134,20 @@ int WorkTicket::GetDate()
 }
 
 
+
 void WorkTicket::SetWorkTicket()
 {
+	GetDate();
 
-	{
-
-
-	}
 } //end of SetWorkTicket
 
 //Setters
+
+void WorkTicket::SetTicketNumber(int ticketNumber)
+{
+	myTicketNumber = ticketNumber;
+}
+
 //sets the date for the object
 void WorkTicket::SetDate(int day, int month, int year)
 {
@@ -145,14 +169,22 @@ void WorkTicket::ShowWorkTicket()
 
 } //end of ShowWorkTicket
 
-//string WorkTicket::ToString() const
-//{
-//	stringstream strOut;
-//
-//	strOut << "Ticket Number: " << ticketNumber;
-//
-//	//return the string
-//	return strOut.str();
-//}
+string WorkTicket::ToString() const
+{
+	stringstream strOut;
 
+	strOut << "Ticket Number: " << myTicketNumber;
+
+	//return the string
+	return strOut.str();
+}
+
+string WorkTicket::DateString() const
+{
+	stringstream dateStr;
+
+	dateStr << myDay << "/" << myMonth << "/" << myYear;
+
+	return dateStr.str();
+}
 
